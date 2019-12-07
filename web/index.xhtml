@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- todo разобраться с  этим вот PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!DOCTYPE html>
+<!-- "a" нужно чтобы вписать placeholder(аттрибут) в inputText -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ace="http://www.icefaces.org/icefaces/components">
+<!--xmlns:ace="http://www.icefaces.org/icefaces/components"-->
+
+<h:head>
+   <title>Lab3pip</title>
+   <!-- todo полетел js напрочь -->
+   <!--    <h:outputScript name="script.js" library="js"/>-->
+   <!--todo сделать норм css  -->
+   <!--    <h:outputStylesheet name="style.css" library="css"/>-->
+</h:head>
+
+<h:body>
+   <header>Митин Михаил Владиславович <br/>P3200<br/> Вариант 200033</header>
+
+   <!-- todo h:inputHidden нужен для канваса, наверное -->
+   <div>
+
+      <div id="divForCanvas">
+         <canvas id="shapesCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
+         <canvas id="cartesianSystemCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
+         <canvas id="circlesCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
+      </div>
+
+      <h:form>
+         <!--todo  h:messages для ошибок пользователя    -->
+
+         X:<ace:sliderEntry/>
+
+
+         Y:
+         <h:inputText a:placeholder="(-5...5)"></h:inputText>
+         R:
+         <h:selectManyCheckbox value="kavo">
+            <h:selectBooleanCheckbox value="false" itemLabel="1" >1</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="false" itemLabel="1.5">1.5</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="false" itemLabel="2">2</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="false" itemLabel="2.5">2.5</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="false" itemLabel="3">3</h:selectBooleanCheckbox>
+         </h:selectManyCheckbox>
+
+         <!-- todo Переделать кнопку для отправки -->
+         <h:commandButton action="save" value="Отправить"></h:commandButton>
+      </h:form>
+   </div>
+
+
+   <div id="divForTime"> Тут должно быть время!</div>
+
+</h:body>
+
+</html>

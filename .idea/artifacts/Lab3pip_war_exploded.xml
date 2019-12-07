@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Lab3pip:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lab3pip_war_exploded.war</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Lab3pip/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Lab3pip" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Mojarra-2.4.0" />
+          <element id="file-copy" path="$USER_HOME$/OneDrive/Desktop/ICEfaces-4.3.0-bin/icefaces/lib/icefaces.jar" />
+          <element id="file-copy" path="$USER_HOME$/OneDrive/Desktop/ICEfaces-4.3.0-bin/icefaces/lib/icefaces-ace.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
