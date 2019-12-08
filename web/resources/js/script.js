@@ -69,15 +69,17 @@ function toDrawShapes(widthOfCartesianSystem, heightOfCartesianSystem, radius, c
     context.lineWidth = lineWidth;
 
     //1) Рисуем фигуры
-    //1.1)Прямоугольник в первой четверти
-    context.rect(centre, centre, radius, radius / 2);
+    //1.1)Прямоугольник в третьей четверти
+    context.rect(centre, centre, -radius, radius);
+    //1.2)Арка в четвёртой четверти
+    context.arc(centre,centre,radius/2,0,Math.PI / 2, false );
     //1.2)Арка в первой четверти
-    context.arc(centre, centre, radius, 0, -Math.PI / 2, true);
-    //1.3)Треугольник в третьей четверти
-    context.moveTo(minusRadDivTwoOfX, centre);
-    context.lineTo(centre, minusRadOfY);
-    context.lineTo(centre, centre);
-    context.moveTo(centre, centre);
+    // context.arc(centre, centre, radius, 0, -Math.PI / 2, true);
+    //1.3)Треугольник во второй четверти
+    context.moveTo(minusRadDivTwoOfX,centre);
+    context.lineTo(centre,plusRadOfY);
+    context.lineTo(centre,centre);
+    context.moveTo(centre,centre);
     context.fill(); //окрашиваем
     context.stroke(); //выводим
 
@@ -191,10 +193,12 @@ function toDrawCartesianSystem(widthOfCartesianSystem, heightOfCartesianSystem, 
 }
 
 //todo нужна другая функция, которая будет делигировать данные функциям, которые рисуют!
-
+alert("Перед рисовкой фигур");
 //допустим радиус равен 100 px
-toDrawShapes(250, 250, document.getElementById("r").value * 100 / 3, "purple", 0);
-toDrawCartesianSystem(250, 250, document.getElementById("r").value * 100 / 3, "black", 2);
+//todo ТУТ ИЗМЕНИЛ РАДИУС, БЫЛ  document.getElementById("r").value * 100 / 3 ОБРАТНО ВЕРНУТЬ!!!
+// toDrawShapes(250, 250, 1, "purple", 0);
+// todo ТУТ ИЗМЕНИЛ РАДИУС, БЫЛ document.getElementById("r").value * 100 / 3 ОБРАТНО ВЕРНУТЬ!!!
+// toDrawCartesianSystem(250, 250, 1, "black", 2);
 
 
 function check() { //todo сделать нейминг
@@ -245,57 +249,57 @@ setInterval(showTime, 1000);
 //todo скорее всего придётся переделать, т.к. костыльно; Заменяет начальный текст на дату сразу, при загрузке страницы
 window.onload = showTime;
 
-//Функция для вырисовки кругов на декартовой системе координат
 
 
-function validate() {
-alert("вошли в validate");
-//todo проверить X на клиент. валидации
-    let y = document.getElementById("y").value.replace(",", "."); //y
 
-    let r = document.getElementById("r").value.replace(",", "."); //r
-
-
-    let i = 0;
-    //  let arrOfX = [-5, -4, -3, -2, -1, 0, 1, 2, 3];
-    let arrOfR = ["1", "1.5", "2", "2.5", "3"];
-
-
-    if ((!isNumeric(y)) || y > 5 || y < -5) {
-
-        y = document.getElementById("y"); //вот эту
-        y.style.border = "2px solid red";// и вот эту
-
-
-        ++i;
-    } else {
-
-        y = document.getElementById("y");
-        y.style.border = "2px solid green";
-
-    }
-
-    if ((!isNumeric(r)) || !arrOfR.includes(r)) {
-
-        r = document.getElementById("r"); //вот эту
-        r.style.border = "2px solid red";// и вот эту
-
-        ++i;
-    } else {
-        r = document.getElementById("r");
-        r.style.border = "2px solid green";
-    }
-    if (i === 0) {
-        return true;
-    } else return false;
-
-
-} //todo переделать функцию
-
-function isNumeric(n) {
-
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
+// function validate() {
+// // alert("вошли в validate");
+// // //todo проверить X на клиент. валидации
+// //     let y = document.getElementById("y").value.replace(",", "."); //y
+// //
+// //     let r = document.getElementById("r").value.replace(",", "."); //r
+// //
+// //
+// //     let i = 0;
+// //     //  let arrOfX = [-5, -4, -3, -2, -1, 0, 1, 2, 3];
+// //     let arrOfR = ["1", "1.5", "2", "2.5", "3"];
+// //
+// //
+// //     if ((!isNumeric(y)) || y > 5 || y < -5) {
+// //
+// //         y = document.getElementById("y"); //вот эту
+// //         y.style.border = "2px solid red";// и вот эту
+// //
+// //
+// //         ++i;
+// //     } else {
+// //
+// //         y = document.getElementById("y");
+// //         y.style.border = "2px solid green";
+// //
+// //     }
+// //
+// //     if ((!isNumeric(r)) || !arrOfR.includes(r)) {
+// //
+// //         r = document.getElementById("r"); //вот эту
+// //         r.style.border = "2px solid red";// и вот эту
+// //
+// //         ++i;
+// //     } else {
+// //         r = document.getElementById("r");
+// //         r.style.border = "2px solid green";
+// //     }
+// //     if (i === 0) {
+// //         return true;
+// //     } else return false;
+// //
+// //
+// // } //todo переделать функцию
+// //
+// // function isNumeric(n) {
+// //
+// //     return !isNaN(parseFloat(n)) && isFinite(n);
+// // }
 
 function toDrawCartesianSystemAfterChangeR() {
     //todo проверить тут всё, избавиться от всех цифр, нейминг
@@ -328,3 +332,5 @@ eventsForR.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
 
 
 //testEvent.addEventListener("change",toDrawCirclesAfterChangeR,false);
+
+alert("Вышли из JS файла");

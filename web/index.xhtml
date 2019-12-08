@@ -12,11 +12,12 @@
 <!--xmlns:ace="http://www.icefaces.org/icefaces/components"-->
 
 <h:head>
+
    <title>Lab3pip</title>
    <!-- todo полетел js напрочь -->
-   <!--    <h:outputScript name="script.js" library="js"/>-->
+       <h:outputScript name="script.js" library="js" />
    <!--todo сделать норм css  -->
-   <!--    <h:outputStylesheet name="style.css" library="css"/>-->
+       <h:outputStylesheet name="style.css" library="css"/>
 </h:head>
 
 <h:body>
@@ -30,6 +31,11 @@
          <canvas id="cartesianSystemCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
          <canvas id="circlesCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
       </div>
+      <script>
+         //todo ТУТ ИЗМЕНИЛ РАДИУС, БЫЛ  document.getElementById("r").value * 100 / 3 ОБРАТНО ВЕРНУТЬ!!!
+         toDrawShapes(250, 250, 33.33, "purple", 0);
+         toDrawCartesianSystem(250, 250, 33.33, "black", 2);
+      </script>
 
       <h:form onsubmit="alert('!!!!')" id="formWithButton">
          <!--todo  h:messages для ошибок пользователя    -->
