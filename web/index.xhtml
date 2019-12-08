@@ -31,25 +31,30 @@
          <canvas id="circlesCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
       </div>
 
-      <h:form>
+      <h:form onsubmit="alert('!!!!')" id="formWithButton">
          <!--todo  h:messages для ошибок пользователя    -->
+<!--todo проверить stepPercent -->
+         X: <ace:sliderEntry value="0" min="-4" max="4" showLabels="true" stepPercent="2.5" id="x" />
 
-         X:<ace:sliderEntry/>
-
-
+         <br/>
          Y:
-         <h:inputText a:placeholder="(-5...5)"></h:inputText>
+
+         <h:inputText a:placeholder="(-5...5)" id="y"  value="#{Bean.y}"></h:inputText>
+
+         <br/>
          R:
-         <h:selectManyCheckbox value="kavo">
-            <h:selectBooleanCheckbox value="false" itemLabel="1" >1</h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox value="false" itemLabel="1.5">1.5</h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox value="false" itemLabel="2">2</h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox value="false" itemLabel="2.5">2.5</h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox value="false" itemLabel="3">3</h:selectBooleanCheckbox>
-         </h:selectManyCheckbox>
+
+            <h:selectBooleanCheckbox value="false" itemLabel="1" id="r1">1</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="false" itemLabel="1.5" id="r2">1.5</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="false" itemLabel="2" id="r3">2</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="false" itemLabel="2.5" id="r4">2.5</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="false" itemLabel="3" id="r5">3</h:selectBooleanCheckbox>
+
 
          <!-- todo Переделать кнопку для отправки -->
-         <h:commandButton action="save" value="Отправить"></h:commandButton>
+         <h:commandButton action="#{Bean.addToMyList()}" value="Отправить" id="submit-button">
+
+         </h:commandButton>
       </h:form>
    </div>
 
