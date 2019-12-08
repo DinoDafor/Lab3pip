@@ -7,6 +7,19 @@ import java.util.List;
 @ManagedBean(name = "Bean", eager = true)
 @ApplicationScoped
 public class Bean implements Serializable {
+    private Dot dotInBean = new Dot();
+//Митина методы
+    public Dot getDotInBean() {
+        System.out.println("Получает Bean внутренний Dot!");
+        return dotInBean;
+    }
+
+    public void setDotInBean(Dot dotInBean) {
+        this.dotInBean = dotInBean;
+    }
+
+    private ArrayList<Dot> dots = new ArrayList<>();
+
 
     private String x = null;
     private String y = null;
@@ -73,7 +86,23 @@ public class Bean implements Serializable {
 
     Connection connection;
 
+    public void addDot() {
 
+        dots.add(dotInBean);
+//todo ЗДЕСЬ НАДО СДЕЛАТЬ СВИТЧ НА БУЛЕАН R? (R1=TRUE => R1==1;)
+        System.out.println("Отладка в addDot");
+        for (int i = 0; i < dots.size(); i++) {
+            System.out.println( "X равен: " + dots.get(i).getX() + " под номером " + i);
+            System.out.println( "Y равен: " + dots.get(i).getY() + " под номером " + i);
+            System.out.println( "R1 равен: " + dots.get(i).isR1() + " под номером " + i);
+            System.out.println( "R2 равен: " + dots.get(i).isR2() + " под номером " + i);
+            System.out.println( "R3 равен: " + dots.get(i).isR3() + " под номером " + i);
+            System.out.println( "R4 равен: " + dots.get(i).isR4() + " под номером " + i);
+            System.out.println( "R5 равен: " + dots.get(i).isR5() + " под номером " + i);
+        }
+//???
+        dotInBean = new Dot();
+    }
 
     public Connection getConnection(){
         try{

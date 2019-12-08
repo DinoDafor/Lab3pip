@@ -33,26 +33,26 @@
 
       <h:form onsubmit="alert('!!!!')" id="formWithButton">
          <!--todo  h:messages для ошибок пользователя    -->
-<!--todo проверить stepPercent -->
-         X: <ace:sliderEntry value="0" min="-4" max="4" showLabels="true" stepPercent="2.5" id="x" />
+<!--todo  stepPercent НЕПРАВИЛЬНЫЙ -->
+         X: <ace:sliderEntry value="#{Bean.getDotInBean().x}" min="-4" max="4" showLabels="true" stepPercent="2.5" id="x"  />
 
          <br/>
          Y:
 
-         <h:inputText a:placeholder="(-5...5)" id="y"  value="#{Bean.y}"></h:inputText>
+         <h:inputText a:placeholder="(-5...5)" id="y" value="#{Bean.getDotInBean().y}"></h:inputText>
 
          <br/>
-         R:
+         R:где
 
-            <h:selectBooleanCheckbox value="false" itemLabel="1" id="r1">1</h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox value="false" itemLabel="1.5" id="r2">1.5</h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox value="false" itemLabel="2" id="r3">2</h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox value="false" itemLabel="2.5" id="r4">2.5</h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox value="false" itemLabel="3" id="r5">3</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="#{Bean.getDotInBean().r1}" itemLabel="1" id="r1">1</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="#{Bean.getDotInBean().r2}" itemLabel="1.5" id="r2">1.5</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="#{Bean.getDotInBean().r3}" itemLabel="2" id="r3">2</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="#{Bean.getDotInBean().r4}" itemLabel="2.5" id="r4">2.5</h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="#{Bean.getDotInBean().r5}" itemLabel="3" id="r5">3</h:selectBooleanCheckbox>
 
 
          <!-- todo Переделать кнопку для отправки -->
-         <h:commandButton action="#{Bean.addToMyList()}" value="Отправить" id="submit-button">
+         <h:commandButton action="#{Bean.addDot()}" value="Отправить" id="submit-button">
 
          </h:commandButton>
       </h:form>
