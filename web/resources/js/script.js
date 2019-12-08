@@ -72,14 +72,14 @@ function toDrawShapes(widthOfCartesianSystem, heightOfCartesianSystem, radius, c
     //1.1)Прямоугольник в третьей четверти
     context.rect(centre, centre, -radius, radius);
     //1.2)Арка в четвёртой четверти
-    context.arc(centre,centre,radius/2,0,Math.PI / 2, false );
+    context.arc(centre, centre, radius / 2, 0, Math.PI / 2, false);
     //1.2)Арка в первой четверти
     // context.arc(centre, centre, radius, 0, -Math.PI / 2, true);
     //1.3)Треугольник во второй четверти
-    context.moveTo(minusRadDivTwoOfX,centre);
-    context.lineTo(centre,plusRadOfY);
-    context.lineTo(centre,centre);
-    context.moveTo(centre,centre);
+    context.moveTo(minusRadDivTwoOfX, centre);
+    context.lineTo(centre, plusRadOfY);
+    context.lineTo(centre, centre);
+    context.moveTo(centre, centre);
     context.fill(); //окрашиваем
     context.stroke(); //выводим
 
@@ -193,7 +193,7 @@ function toDrawCartesianSystem(widthOfCartesianSystem, heightOfCartesianSystem, 
 }
 
 //todo нужна другая функция, которая будет делигировать данные функциям, которые рисуют!
-alert("Перед рисовкой фигур");
+
 //допустим радиус равен 100 px
 //todo ТУТ ИЗМЕНИЛ РАДИУС, БЫЛ  document.getElementById("r").value * 100 / 3 ОБРАТНО ВЕРНУТЬ!!!
 // toDrawShapes(250, 250, 1, "purple", 0);
@@ -202,8 +202,9 @@ alert("Перед рисовкой фигур");
 
 
 function check() { //todo сделать нейминг
-
-    let r = document.getElementById('r').value; //берём значение радиуса из селекта
+    //todo БЫЛО ЗНАЧЕНИЕ document.getElementById('r').value; //берём значение радиуса из селекта ВЕРНУТЬ
+    alert("зашли в check");
+    let r = 33.33; //берём значение радиуса из селекта
 
     let domRect = circlesCanvas.getBoundingClientRect();
     let pixelX = (event.pageX - domRect.left - domRect.width / 2 - window.scrollX); //Пиксели, куда нажал пользователь на холст
@@ -222,11 +223,18 @@ function check() { //todo сделать нейминг
 
 //Функция для отправки формы от пользователя на сервер через canvas
 function createFormForCanvas(x, y, r) {
-//todo сделать hidden или типо того
+    //todo переделать под новый вариант
+    document.getElementById("formWithButton:x").value = x;
+    document.getElementById("formWithButton:y").value = y;
+    //document.getElementById("formWithButton:r").value = r;
+
+
     let form = document.createElement('form');
+    alert("создаётся форма?");
     form.action = "validate";
+    alert("создаётся");
     form.method = "POST";
-    form.hidden=true;
+    form.hidden = true;
     form.innerHTML = "<input name= 'x' value=\"" + x + "\">" + "<input name= 'y' value=\"" + y + "\">" + "<input name= 'r' value=\"" + r + "\">";// + '<input name="y" value="1" id="yC">' + '<input name="r" value="1" id="rC" >";
     document.body.append(form);
 
@@ -248,8 +256,6 @@ function showTime() {
 setInterval(showTime, 1000);
 //todo скорее всего придётся переделать, т.к. костыльно; Заменяет начальный текст на дату сразу, при загрузке страницы
 window.onload = showTime;
-
-
 
 
 // function validate() {
@@ -322,8 +328,9 @@ function toDrawShapesAfterChangeR() {
 //     toDrawCirclesOnCanvas();
 // }
 
-let eventsForCanvas = document.getElementById("circlesCanvas");
-eventsForCanvas.addEventListener("click", check, false);
+//todo в 3 убрал на стр
+// let eventsForCanvas = document.getElementById("circlesCanvas");
+// eventsForCanvas.addEventListener("click", check, false);
 
 
 let eventsForR = document.getElementById("r");
@@ -333,4 +340,3 @@ eventsForR.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
 
 //testEvent.addEventListener("change",toDrawCirclesAfterChangeR,false);
 
-alert("Вышли из JS файла");
