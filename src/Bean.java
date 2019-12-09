@@ -88,7 +88,7 @@ public class Bean implements Serializable {
     Connection connection;
 
     public void addDot() {
-
+//todo МИША НАДО СДЕЛАТЬ ОКРУГЛЕНИЕ
         dots.add(dotInBean);
 //todo ЗДЕСЬ НАДО СДЕЛАТЬ СВИТЧ НА БУЛЕАН R? (R1=TRUE => R1==1;)
         System.out.println("Отладка в addDot");

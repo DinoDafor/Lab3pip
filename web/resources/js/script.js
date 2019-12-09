@@ -233,8 +233,7 @@ function toDrawCartesianSystem(widthOfCartesianSystem, heightOfCartesianSystem, 
 
 function check() { //todo сделать нейминг
     //todo БЫЛО ЗНАЧЕНИЕ document.getElementById('r').value; //берём значение радиуса из селекта ВЕРНУТЬ
-    alert("зашли в check");
-    let r = 33.33; //берём значение радиуса из селекта
+
 
     let domRect = circlesCanvas.getBoundingClientRect();
     let pixelX = (event.pageX - domRect.left - domRect.width / 2 - window.scrollX); //Пиксели, куда нажал пользователь на холст
@@ -254,21 +253,30 @@ function check() { //todo сделать нейминг
 //Функция для отправки формы от пользователя на сервер через canvas
 function createFormForCanvas(x, y, r) {
     //todo переделать под новый вариант
-    document.getElementById("formWithButton:x").value = x;
+
+
+    alert("Зашли в createFormForCanvas");
+    alert("x по канвасу равен" + x);
+    alert(document.getElementById("formWithButton:x_hidden").value + " x до переопределения");
+
+    document.getElementById("formWithButton:x_hidden").value = x;
+    alert(document.getElementById("formWithButton:x_hidden").value + " x после переопределения");
+
+
     document.getElementById("formWithButton:y").value = y;
-    //document.getElementById("formWithButton:r").value = r;
+    let button = document.getElementById("formWithButton:submitButton");
 
-
-    let form = document.createElement('form');
-    alert("создаётся форма?");
-    form.action = "validate";
-    alert("создаётся");
-    form.method = "POST";
-    form.hidden = true;
-    form.innerHTML = "<input name= 'x' value=\"" + x + "\">" + "<input name= 'y' value=\"" + y + "\">" + "<input name= 'r' value=\"" + r + "\">";// + '<input name="y" value="1" id="yC">' + '<input name="r" value="1" id="rC" >";
-    document.body.append(form);
-
-    form.submit();
+    button.click();
+    // let form = document.createElement('form');
+    //
+    // form.action = "validate";
+    //
+    // form.method = "POST";
+    // form.hidden = true;
+    // form.innerHTML = "<input name= 'x' value=\"" + x + "\">" + "<input name= 'y' value=\"" + y + "\">" + "<input name= 'r' value=\"" + r + "\">";// + '<input name="y" value="1" id="yC">' + '<input name="r" value="1" id="rC" >";
+    // document.body.append(form);
+    //
+    // form.submit();
 
 }
 
@@ -362,9 +370,6 @@ function toDrawShapesAfterChangeR() {
 //todo в 3 убрал на стр
 // let eventsForCanvas = document.getElementById("circlesCanvas");
 // eventsForCanvas.addEventListener("click", check, false);
-
-
-
 
 
 //testEvent.addEventListener("change",toDrawCirclesAfterChangeR,false);
