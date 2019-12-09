@@ -8,7 +8,8 @@ import java.util.List;
 @ApplicationScoped
 public class Bean implements Serializable {
     private Dot dotInBean = new Dot();
-//Митина методы
+
+
     public Dot getDotInBean() {
         System.out.println("Получает Bean внутренний Dot!");
         return dotInBean;

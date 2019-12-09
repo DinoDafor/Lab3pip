@@ -1,5 +1,35 @@
 //todo оптимизировать всё, для будущей отладки
 
+
+let r = 1; //Радиус, который мы используем для отрисовки, по дефолту равен 1
+
+
+function setRIfSelectedR1() {
+    r = 1;
+
+}
+
+function setRIfSelectedR2() {
+    r = 1.5;
+
+}
+
+function setRIfSelectedR3() {
+    r = 2;
+
+}
+
+function setRIfSelectedR4() {
+    r = 2.5;
+
+}
+
+function setRIfSelectedR5() {
+    r = 3;
+
+}
+
+
 function toDrawCirclesOnCanvas(result, pixelX, pixelY, oldRadius) {
 //todo эти атрибуты временны
 
@@ -253,7 +283,7 @@ function showTime() {
 }
 
 //Задаём таймер для отображения времени
-setInterval(showTime, 1000);
+setInterval(showTime, 13000);
 //todo скорее всего придётся переделать, т.к. костыльно; Заменяет начальный текст на дату сразу, при загрузке страницы
 window.onload = showTime;
 
@@ -309,16 +339,17 @@ window.onload = showTime;
 
 function toDrawCartesianSystemAfterChangeR() {
     //todo проверить тут всё, избавиться от всех цифр, нейминг
-    let rData = document.getElementById("r").value;
-    let radius = 100 * rData / 3;
+    // let rData = document.getElementById("r").value; ниже вместо r было rdata
+    let radius = 100 * r / 3;
 
     toDrawCartesianSystem(250, 250, radius, "black", 2);
 }
 
 function toDrawShapesAfterChangeR() {
-    let r = document.getElementById("r").value;
+    // let r = document.getElementById("r").value;
+
     let radius = 100 * r / 3;
-    toDrawShapes(250, 250, radius, "purple,0");
+    toDrawShapes(250, 250, radius, "purple", 0);
 }
 
 
@@ -333,9 +364,7 @@ function toDrawShapesAfterChangeR() {
 // eventsForCanvas.addEventListener("click", check, false);
 
 
-let eventsForR = document.getElementById("r");
-eventsForR.addEventListener("change", toDrawShapesAfterChangeR, false);
-eventsForR.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+
 
 
 //testEvent.addEventListener("change",toDrawCirclesAfterChangeR,false);

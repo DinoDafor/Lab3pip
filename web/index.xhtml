@@ -9,7 +9,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ace="http://www.icefaces.org/icefaces/components">
-<!--xmlns:ace="http://www.icefaces.org/icefaces/components"-->
 
 <h:head>
 
@@ -31,13 +30,7 @@
          <canvas id="cartesianSystemCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
          <canvas id="circlesCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
       </div>
-      <script>
-         //todo ТУТ ИЗМЕНИЛ РАДИУС, БЫЛ  document.getElementById("r").value * 100 / 3 ОБРАТНО ВЕРНУТЬ!!!
-         toDrawShapes(250, 250, 33.33, "purple", 0);
-         toDrawCartesianSystem(250, 250, 33.33, "black", 2);
-         let eventsForCanvas = document.getElementById("circlesCanvas");
-         eventsForCanvas.addEventListener("click", check, false);
-      </script>
+
 
       <h:form onsubmit="alert('!!!!')" id="formWithButton">
          <!--todo  h:messages для ошибок пользователя    -->
@@ -50,8 +43,8 @@
          <h:inputText a:placeholder="(-5...5)" id="y" value="#{Bean.getDotInBean().y}"></h:inputText>
 
          <br/>
-         R:где
-
+         R:
+<!--#{Bean.getDotInBean().r1}-->
             <h:selectBooleanCheckbox value="#{Bean.getDotInBean().r1}" itemLabel="1" id="r1">1</h:selectBooleanCheckbox>
             <h:selectBooleanCheckbox value="#{Bean.getDotInBean().r2}" itemLabel="1.5" id="r2">1.5</h:selectBooleanCheckbox>
             <h:selectBooleanCheckbox value="#{Bean.getDotInBean().r3}" itemLabel="2" id="r3">2</h:selectBooleanCheckbox>
@@ -68,6 +61,57 @@
 
 
    <div id="divForTime"> Тут должно быть время!</div>
+
+
+   <script>
+      //r Радиус, который мы используем для отрисовки, по дефолту равен 1
+      //todo ТУТ ИЗМЕНИЛ РАДИУС, БЫЛ  document.getElementById("r").value * 100 / 3 ОБРАТНО ВЕРНУТЬ!!!
+      toDrawShapes(250, 250, r*100/3, "purple", 0);
+
+
+      toDrawCartesianSystem(250, 250, r*100/3, "black", 2);
+      let eventsForCanvas = document.getElementById("circlesCanvas");
+      eventsForCanvas.addEventListener("click", check, false);
+
+
+      let eventsForR1 = document.getElementById("formWithButton:r1");
+      let eventsForR2 = document.getElementById("formWithButton:r2");
+      let eventsForR3 = document.getElementById("formWithButton:r3");
+      let eventsForR4 = document.getElementById("formWithButton:r4");
+      let eventsForR5 = document.getElementById("formWithButton:r5");
+
+      eventsForR1.addEventListener("click", setRIfSelectedR1, false);
+      eventsForR1.addEventListener("change", toDrawShapesAfterChangeR, false);
+      eventsForR1.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+
+      eventsForR2.addEventListener("click", setRIfSelectedR2, false);
+      eventsForR2.addEventListener("change", toDrawShapesAfterChangeR, false);
+      eventsForR2.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+
+      eventsForR3.addEventListener("click", setRIfSelectedR3, false);
+      eventsForR3.addEventListener("change", toDrawShapesAfterChangeR, false);
+      eventsForR3.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+
+      eventsForR4.addEventListener("click", setRIfSelectedR4, false);
+      eventsForR4.addEventListener("change", toDrawShapesAfterChangeR, false);
+      eventsForR4.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+
+      eventsForR5.addEventListener("click", setRIfSelectedR5, false);
+      eventsForR5.addEventListener("change", toDrawShapesAfterChangeR, false);
+      eventsForR5.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+      //todo ОСТАЛСЯ БАГ, когда отключаешь чек, то он ставит этот радиус....
+
+
+    //  let eventsForR = document.getElementById("r");
+
+
+
+
+
+
+
+
+   </script>
 
 </h:body>
 
