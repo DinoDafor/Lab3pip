@@ -6,17 +6,23 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @ManagedBean(name = "Bean", eager = true)
 @ApplicationScoped
 public class Bean implements Serializable {
-    private double x=0;
-    private double y=0;
-    private double r=0;
-   private boolean r1=true; //Сделал true, чтобы при первой загрузке был выбран
-    private boolean r2=false;
-    private boolean r3=false;
-    private boolean r4=false;
-    private boolean r5=false;
+
+    private String url = "jdbc:postgresql://localhost:5432/dots";//Записываем url, в конце имя DB
+    private String nameOfAdmin = "postgres";// Имя
+    private String pass = "88dofodo";// Пароль
+
+    private double x = 0;
+    private double y = 0;
+    private double r = 0;
+    private boolean r1 = true; //Сделал true, чтобы при первой загрузке был выбран
+    private boolean r2 = false;
+    private boolean r3 = false;
+    private boolean r4 = false;
+    private boolean r5 = false;
     private boolean fromCanvas = false;
 
     public boolean isFromCanvas() {
@@ -68,52 +74,55 @@ public class Bean implements Serializable {
     }
 
 
-
-
-    public double getX(){
+    public double getX() {
         return x;
     }
-    public double getY(){
+
+    public double getY() {
         return y;
     }
-//    public String getR(){
+
+    //    public String getR(){
 //        return r;
 //    }
-    private void setRFromBoolean(){
-        if(r1) r=1;
-        if(r2) r=1.5;
-        if(r3) r=2;
-        if(r4) r=2.5;
-        if(r5) r=3;
+    private void setRFromBoolean() {
+        if (r1) r = 1;
+        if (r2) r = 1.5;
+        if (r3) r = 2;
+        if (r4) r = 2.5;
+        if (r5) r = 3;
     }
 
-    public void setX( double x){
+    public void setX(double x) {
         //todo Предлагаю ничего тут не добавлять, пусть сеттеры будут стандартными, а остальной функцианал перенести в др функции
-       this.x=x;
-        }
+        this.x = x;
+    }
 
 
-    public void setY(double y){
-        this.y=y;
+    public void setY(double y) {
+        this.y = y;
     }
 
     Connection connection;
 
 
-    public Connection getConnection(){
-        try{
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection( "jdbc:postgresql://192.168.10.99:5432/postgres","postgres","b0nd2211");
-        }catch(Exception e){
+    public Connection getConnection() {
+        try {
+            Class.forName("org.postgresql.Driver"); //Подключаем драйвер
+            System.out.println("Драйвер загружен!");//Выводим сообщение
+            connection = DriverManager.getConnection(url, nameOfAdmin, pass);//Устанавливаем соединение
+            System.out.println("Соединение успешно установлено! ");//Сообщение о подключении
+        } catch (Exception e) {
+            e.printStackTrace(); //Выводим стректрейс ошибки
             System.out.println("Cannot connect to database!");
         }
         return connection;
     }
 
-    public List<Dot> getDotList()throws  ClassNotFoundException, SQLException{
+    public List<Dot> getDotList() throws ClassNotFoundException, SQLException {
         Connection c = getConnection();
-        List<Dot> list = new ArrayList<Dot>();
-        PreparedStatement st = c.prepareStatement("select x, y, r, inArea from postgres.dots");
+        List<Dot> list = new ArrayList<Dot>(); //Коллекция для хранения точек, нужна для извлечения данных из DB
+        PreparedStatement st = c.prepareStatement("select x, y, r, inArea from dots");
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
             Dot d = new Dot(rs.getDouble("x"), rs.getDouble("y"), rs.getDouble("r"), rs.getBoolean("inArea"));
@@ -122,24 +131,24 @@ public class Bean implements Serializable {
         rs.close();
         st.close();
         c.close();
-        return  list;
+        return list;
     }
 
-    public String addToList(){
+    public String addToList() {
         setRFromBoolean(); //Устанавливаем R изходя из boolean значений
-        try{
+        try {
             connection = getConnection();
 
-            System.out.println(x +" " + y + " " + r);
+            System.out.println(x + " " + y + " " + r);
             PreparedStatement st = connection.prepareStatement("INSERT INTO dots values(?, ?, ?, ?)");
             st.setDouble(1, x);
             st.setDouble(2, y);
             st.setDouble(3, r);
-            st.setBoolean(4, Dot.check(x,y,r));
+            st.setBoolean(4, Dot.check(x, y, r));
             st.executeUpdate();
             st.close();
             connection.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }// todo это переход на начальную? зачем?
         return "index.xhtml?faces-redirect=true";

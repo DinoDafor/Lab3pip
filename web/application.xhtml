@@ -33,7 +33,8 @@
                                 id="x" label="X"/>
             <br/>
             Y:
-            <h:inputText a:placeholder="(-5...5)" id="y" value="#{Bean.y}" label="Y" converterMessage="Введите, пожалуйста, число">
+            <h:inputText a:placeholder="(-5...5)" id="y" value="#{Bean.y}" label="Y"
+                         converterMessage="Введите, пожалуйста, число">
                 <f:convertNumber pattern="#0.000"/>
                 <f:validator validatorId="yValidator"/>
             </h:inputText> <h:message for="y" style="color:red"/>
@@ -70,6 +71,30 @@
 
             <!-- todo Переделать кнопку для отправки -->
             <h:commandButton action="#{Bean.addToList()}" value="Отправить" id="submitButton">
+
+
+                <ace:dataTable id="dotsTable"
+                               paginator="true"
+                               paginatorPosition="bottom"
+                               rows="5">
+
+                    <ace:column id="columnX" headerText="X"
+                    >
+                        <!--                        <h:outputText id="idCell" value="#{car.id}"/>-->
+                    </ace:column>
+
+                    <ace:column id="columnY" headerText="Y">
+                        <!--                        <h:outputText id="nameCell" value="#{car.name}"/>-->
+                    </ace:column>
+                    <ace:column id="columnR" headerText="R">
+                        <!--                        <h:outputText id="chassisCell" value="#{car.chassis}"/>-->
+                    </ace:column>
+
+                    <ace:column id="columnResult" headerText="RESULT">
+                        <!--                        <h:outputText id="weightCell" value="#{car.weight}lbs."/>-->
+                    </ace:column>
+
+                </ace:dataTable>
 
             </h:commandButton>
         </h:form>
