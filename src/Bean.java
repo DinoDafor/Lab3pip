@@ -9,10 +9,10 @@ import java.util.List;
 @ManagedBean(name = "Bean", eager = true)
 @ApplicationScoped
 public class Bean implements Serializable {
-    private String x=null;
-    private String y=null;
-    private String r="1";
-    private boolean r1=true; //Сделал true, чтобы при первой загрузке был выбран
+    private double x=0;
+    private double y=0;
+    private double r=0;
+   private boolean r1=true; //Сделал true, чтобы при первой загрузке был выбран
     private boolean r2=false;
     private boolean r3=false;
     private boolean r4=false;
@@ -70,49 +70,31 @@ public class Bean implements Serializable {
 
 
 
-    public String getX(){
+    public double getX(){
         return x;
     }
-    public String getY(){
+    public double getY(){
         return y;
     }
 //    public String getR(){
 //        return r;
 //    }
     private void setRFromBoolean(){
-        if(r1) r="1";
-        if(r2) r="1.5";
-        if(r3) r="2";
-        if(r4) r="2.5";
-        if(r5) r="3";
+        if(r1) r=1;
+        if(r2) r=1.5;
+        if(r3) r=2;
+        if(r4) r=2.5;
+        if(r5) r=3;
     }
 
-    public void setX( String x){
-        if(x.isEmpty())
-            return;
-        double xd = Double.parseDouble(x.trim().replace(",","."));
-        if(fromCanvas)
-            this.x=String.format("%.2f",xd);
-        else {
-            if(xd>-4 && xd<4)
-                this.x=String.format("%.2f",xd);
-            else
-                this.x="0";
+    public void setX( double x){
+        //todo Предлагаю ничего тут не добавлять, пусть сеттеры будут стандартными, а остальной функцианал перенести в др функции
+       this.x=x;
         }
-    }
 
-    public void setY(String y){
-        if(y.isEmpty())
-            return;
-        double yd = Double.parseDouble(y.trim().replace(",","."));
-        if(fromCanvas)
-            this.y=String.format("%.2f",yd);
-        else {
-            if(yd>-5 && yd<5)
-                this.y=String.format("%.2f",yd);
-            else
-                this.y="0";
-        }
+
+    public void setY(double y){
+        this.y=y;
     }
 
     Connection connection;
@@ -144,24 +126,22 @@ public class Bean implements Serializable {
     }
 
     public String addToList(){
-        setRFromBoolean();
+        setRFromBoolean(); //Устанавливаем R изходя из boolean значений
         try{
             connection = getConnection();
-            double parsedX = Double.parseDouble(x.replace(",","."));
-            double parsedY = Double.parseDouble(y.replace(",","."));
-            double parsedR = Double.parseDouble(r.replace(",","."));
+
             System.out.println(x +" " + y + " " + r);
             PreparedStatement st = connection.prepareStatement("INSERT INTO dots values(?, ?, ?, ?)");
-            st.setDouble(1, parsedX);
-            st.setDouble(2, parsedY);
-            st.setDouble(3, parsedR);
-            st.setBoolean(4, Dot.check(parsedX,parsedY,parsedR));
+            st.setDouble(1, x);
+            st.setDouble(2, y);
+            st.setDouble(3, r);
+            st.setBoolean(4, Dot.check(x,y,r));
             st.executeUpdate();
             st.close();
             connection.close();
         }catch(Exception e){
             System.out.println(e);
-        }
+        }// todo это переход на начальную? зачем?
         return "index.xhtml?faces-redirect=true";
     }
 
