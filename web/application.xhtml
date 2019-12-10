@@ -74,24 +74,26 @@
 
 
                 <ace:dataTable id="dotsTable"
+                               var="dot"
                                paginator="true"
                                paginatorPosition="bottom"
-                               rows="5">
+                               rows="10"
+                               value="#{Bean.list}">
 
                     <ace:column id="columnX" headerText="X"
                     >
-                        <!--                        <h:outputText id="idCell" value="#{car.id}"/>-->
+                        <h:outputText id="xCell" value="#{dot.x}"/>
                     </ace:column>
 
                     <ace:column id="columnY" headerText="Y">
-                        <!--                        <h:outputText id="nameCell" value="#{car.name}"/>-->
+                        <h:outputText id="yCell" value="#{dot.y}"/>
                     </ace:column>
                     <ace:column id="columnR" headerText="R">
-                        <!--                        <h:outputText id="chassisCell" value="#{car.chassis}"/>-->
+                        <h:outputText id="rCell" value="#{dot.r}"/>
                     </ace:column>
 
                     <ace:column id="columnResult" headerText="RESULT">
-                        <!--                        <h:outputText id="weightCell" value="#{car.weight}lbs."/>-->
+                        <h:outputText id="resultCell" value="#{dot.inArea}"/>
                     </ace:column>
 
                 </ace:dataTable>

@@ -25,6 +25,17 @@ public class Bean implements Serializable {
     private boolean r5 = false;
     private boolean fromCanvas = false;
 
+
+    List<Dot> list = new ArrayList<Dot>();
+
+    public List<Dot> getList() throws SQLException, ClassNotFoundException {
+        return getDotList();
+    }
+
+    public void setList(List<Dot> list) throws SQLException, ClassNotFoundException {
+        this.list = getDotList();
+    }
+
     public boolean isFromCanvas() {
         return fromCanvas;
     }
@@ -121,7 +132,7 @@ public class Bean implements Serializable {
 
     public List<Dot> getDotList() throws ClassNotFoundException, SQLException {
         Connection c = getConnection();
-        List<Dot> list = new ArrayList<Dot>(); //Коллекция для хранения точек, нужна для извлечения данных из DB
+        list = new ArrayList<Dot>(); //Коллекция для хранения точек, нужна для извлечения данных из DB
         PreparedStatement st = c.prepareStatement("select x, y, r, inArea from dots");
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
@@ -131,6 +142,14 @@ public class Bean implements Serializable {
         rs.close();
         st.close();
         c.close();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Отладка в getDoList...");
+            System.out.println("X равен " + list.get(i).getX()+ " под номером " + i );
+            System.out.println("Y равен " + list.get(i).getY()+ " под номером " + i );
+            System.out.println("R равен " + list.get(i).getR()+ " под номером " + i );
+            System.out.println("RESULT равен " + list.get(i).isInArea()+ " под номером " + i );
+        }
+
         return list;
     }
 

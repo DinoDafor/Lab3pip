@@ -3,10 +3,10 @@ import java.io.Serializable;
 
 public class Dot implements Serializable {
 
-    private double x;
-    private double y;
-    private double r;
-    private boolean inArea;
+    protected double x;
+    protected double y;
+    protected double r;
+    protected boolean inArea;
 
 
     public Dot(double x, double y, double r, boolean inArea) {
