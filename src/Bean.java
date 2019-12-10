@@ -7,25 +7,64 @@ import java.util.List;
 @ManagedBean(name = "Bean", eager = true)
 @ApplicationScoped
 public class Bean implements Serializable {
-    private Dot dotInBean = new Dot();
-
-
-    public Dot getDotInBean() {
-        System.out.println("Получает Bean внутренний Dot!");
-        return dotInBean;
-    }
-
-    public void setDotInBean(Dot dotInBean) {
-        this.dotInBean = dotInBean;
-    }
-
-    private ArrayList<Dot> dots = new ArrayList<>();
-
-
-    private String x = null;
-    private String y = null;
-    private String r = null;
+    private String x=null;
+    private String y=null;
+    private String r="1";
+    private boolean r1=false;
+    private boolean r2=false;
+    private boolean r3=false;
+    private boolean r4=false;
+    private boolean r5=false;
     private boolean fromCanvas = false;
+
+    public boolean isFromCanvas() {
+        return fromCanvas;
+    }
+
+    public void setFromCanvas(boolean fromCanvas) {
+        this.fromCanvas = fromCanvas;
+    }
+
+    public boolean isR1() {
+        return r1;
+    }
+
+    public void setR1(boolean r1) {
+        this.r1 = r1;
+    }
+
+    public boolean isR2() {
+        return r2;
+    }
+
+    public void setR2(boolean r2) {
+        this.r2 = r2;
+    }
+
+    public boolean isR3() {
+        return r3;
+    }
+
+    public void setR3(boolean r3) {
+        this.r3 = r3;
+    }
+
+    public boolean isR4() {
+        return r4;
+    }
+
+    public void setR4(boolean r4) {
+        this.r4 = r4;
+    }
+
+    public boolean isR5() {
+        return r5;
+    }
+
+    public void setR5(boolean r5) {
+        this.r5 = r5;
+    }
+
 
 
 
@@ -38,16 +77,23 @@ public class Bean implements Serializable {
     public String getR(){
         return r;
     }
+    private void setRFromBoolean(){
+        if(r1) r="1";
+        if(r2) r="1.5";
+        if(r3) r="2";
+        if(r4) r="2.5";
+        if(r5) r="3";
+    }
 
     public void setX(String x){
         if(x.isEmpty())
             return;
+        double xd = Double.parseDouble(x.trim().replace(",","."));
         if(fromCanvas)
-            this.x=x;
+            this.x=String.format("%.2f",xd);
         else {
-            double xd = Double.parseDouble(x);
             if(xd>-4 && xd<4)
-                this.x=x;
+                this.x=String.format("%.2f",xd);
             else
                 this.x="0";
         }
@@ -56,54 +102,19 @@ public class Bean implements Serializable {
     public void setY(String y){
         if(y.isEmpty())
             return;
+        double yd = Double.parseDouble(y.trim().replace(",","."));
         if(fromCanvas)
-            this.y=y;
+            this.y=String.format("%.2f",yd);
         else {
-            double yd = Double.parseDouble(y);
             if(yd>-5 && yd<5)
-                this.y=y;
+                this.y=String.format("%.2f",yd);
             else
                 this.y="0";
         }
     }
 
-    public void setR(String r){
-        if(r.isEmpty())
-            return;
-        if(fromCanvas)
-            this.r=r;
-        else {
-            double rd = Double.parseDouble(r);
-            if(rd>=1 && rd<=3)
-                this.r=r;
-            else
-                this.r="";
-        }
-    }
-
-    public void setIsFromCanvas(boolean b){
-        this.fromCanvas=b;
-    }
-
     Connection connection;
 
-    public void addDot() {
-//todo МИША НАДО СДЕЛАТЬ ОКРУГЛЕНИЕ
-        dots.add(dotInBean);
-//todo ЗДЕСЬ НАДО СДЕЛАТЬ СВИТЧ НА БУЛЕАН R? (R1=TRUE => R1==1;)
-        System.out.println("Отладка в addDot");
-        for (int i = 0; i < dots.size(); i++) {
-            System.out.println( "X равен: " + dots.get(i).getX() + " под номером " + i);
-            System.out.println( "Y равен: " + dots.get(i).getY() + " под номером " + i);
-            System.out.println( "R1 равен: " + dots.get(i).isR1() + " под номером " + i);
-            System.out.println( "R2 равен: " + dots.get(i).isR2() + " под номером " + i);
-            System.out.println( "R3 равен: " + dots.get(i).isR3() + " под номером " + i);
-            System.out.println( "R4 равен: " + dots.get(i).isR4() + " под номером " + i);
-            System.out.println( "R5 равен: " + dots.get(i).isR5() + " под номером " + i);
-        }
-//???
-        dotInBean = new Dot();
-    }
 
     public Connection getConnection(){
         try{
@@ -131,12 +142,14 @@ public class Bean implements Serializable {
     }
 
     public String addToList(){
+        setRFromBoolean();
         try{
             connection = getConnection();
-            double parsedX = Double.parseDouble(x);
-            double parsedY = Double.parseDouble(y);
-            double parsedR = Double.parseDouble(r);
-            PreparedStatement st = connection.prepareStatement("INSERT INTO dots(x, y, r, isInArea) values(?, ?, ?, ?)");
+            double parsedX = Double.parseDouble(x.replace(",","."));
+            double parsedY = Double.parseDouble(y.replace(",","."));
+            double parsedR = Double.parseDouble(r.replace(",","."));
+            System.out.println(x +" " + y + " " + r);
+            PreparedStatement st = connection.prepareStatement("INSERT INTO dots values(?, ?, ?, ?)");
             st.setDouble(1, parsedX);
             st.setDouble(2, parsedY);
             st.setDouble(3, parsedR);
@@ -147,7 +160,7 @@ public class Bean implements Serializable {
         }catch(Exception e){
             System.out.println(e);
         }
-        return "view/index.xhtml?faces-redirect=true";
+        return "index.xhtml?faces-redirect=true";
     }
 
     public String toIndex() {

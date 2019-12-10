@@ -266,6 +266,9 @@ function createFormForCanvas(x, y, r) {
     document.getElementById("formWithButton:y").value = y;
     let button = document.getElementById("formWithButton:submitButton");
 
+
+
+
     button.click();
     // let form = document.createElement('form');
     //

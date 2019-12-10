@@ -3,55 +3,6 @@ import java.io.Serializable;
 
 public class Dot implements Serializable {
 
-
-
-    //Не ебу как с одним полем сделать
-    private boolean r1;
-    private boolean r2;
-    private boolean r3;
-    private boolean r4;
-    private boolean r5;
-
-    public boolean isR5() {
-        return r5;
-    }
-
-    public void setR5(boolean r5) {
-        this.r5 = r5;
-    }
-
-    public boolean isR1() {
-        return r1;
-    }
-
-    public void setR1(boolean r1) {
-        this.r1 = r1;
-    }
-
-    public boolean isR2() {
-        return r2;
-    }
-
-    public void setR2(boolean r2) {
-        this.r2 = r2;
-    }
-
-    public boolean isR3() {
-        return r3;
-    }
-
-    public void setR3(boolean r3) {
-        this.r3 = r3;
-    }
-
-    public boolean isR4() {
-        return r4;
-    }
-
-    public void setR4(boolean r4) {
-        this.r4 = r4;
-    }
-
     private double x;
     private double y;
     private double r;
