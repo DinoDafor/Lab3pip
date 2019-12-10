@@ -293,10 +293,7 @@ function showTime() {
 
 }
 
-//Задаём таймер для отображения времени
-setInterval(showTime, 13000);
-//todo скорее всего придётся переделать, т.к. костыльно; Заменяет начальный текст на дату сразу, при загрузке страницы
-window.onload = showTime;
+
 
 
 // function validate() {
@@ -348,12 +345,12 @@ window.onload = showTime;
 // //     return !isNaN(parseFloat(n)) && isFinite(n);
 // // }
 
-function toDrawCartesianSystemAfterChangeR() {
+function toDrawCartesianSystemAfterChangeR() { // todo сделать передачу во внутр метод цвета
     //todo проверить тут всё, избавиться от всех цифр, нейминг
     // let rData = document.getElementById("r").value; ниже вместо r было rdata
     let radius = 100 * r / 3;
 
-    toDrawCartesianSystem(250, 250, radius, "black", 2);
+    toDrawCartesianSystem(250, 250, radius, "green", 2);
 }
 
 function toDrawShapesAfterChangeR() {

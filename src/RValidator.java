@@ -38,10 +38,5 @@ public class RValidator implements Validator {
         }
 
     }
-//    public void validateR1(FacesContext facesContext, UIComponent uiComponent, Object value) throws ValidatorException {
-//        if (true) {
-//
-//            throw new ValidatorException(new FacesMessage("aga"));
-//        }
-//    }
+
 }

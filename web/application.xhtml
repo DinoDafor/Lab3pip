@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+<h:head>
+
+    <title>Application</title>
+    <h:outputScript name="script.js" library="js"/>
+    <!--todo сделать норм css  -->
+    <h:outputStylesheet name="style.css" library="css"/>
+</h:head>
+<h:body>
+    <header>Митин Михаил Владиславович и Бондаренко Михаил Викторович <br/>P3200<br/> Вариант 200040</header>
+
+    <!-- todo h:inputHidden нужен для канваса, наверное -->
+    <div>
+
+        <div id="divForCanvas">
+            <canvas id="shapesCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
+            <canvas id="cartesianSystemCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
+            <canvas id="circlesCanvas" width="250" height="250">У вас не поддерживает canvas!</canvas>
+        </div>
+
+
+        <h:form onsubmit="alert('!!!!')" id="formWithButton">
+            <!--todo  stepPercent НЕПРАВИЛЬНЫЙ -->
+            X: <ace:sliderEntry value="#{Bean.x}" min="-4" max="4" showLabels="true" stepPercent="2.5"
+                                id="x" label="X"/>
+            <!--В BEAN.X выдаёт ошибк-->
+            <br/>
+            Y:
+            <h:inputText a:placeholder="(-5...5)" id="y" value="#{Bean.y}" label="Y" required="true"
+                         requiredMessage="Это поле должно быть заполнено"
+                         validatorMessage="Число должно быть от -5.0 до 5.0">
+                <f:validateDoubleRange minimum="-5.0" maximum="5.0" for="y"/>
+            </h:inputText> <h:message for="y" style="color:red"/>
+
+
+            <!-- <h:outputLabel for="username">Username</h:outputLabel> добавить везде -->
+            <br/>
+            <!--           <f:validator binding="#{bean.validator}" /> нужен нам будет для указания версий R валидатора-->
+            R:
+            <h:selectBooleanCheckbox value="#{Bean.r1}" label="R1" itemLabel="1" id="r1">1
+                <f:validator validatorId="rValidator"/>
+            </h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="#{Bean.r2}" label="R2" itemLabel="1.5" id="r2">1.5
+                <f:validator validatorId="rValidator"/>
+            </h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="#{Bean.r3}" label="R3" itemLabel="2" id="r3">2
+                <f:validator validatorId="rValidator"/>
+            </h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="#{Bean.r4}" label="R4" itemLabel="2.5" id="r4">2.5
+                <f:validator validatorId="rValidator"/>
+            </h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox value="#{Bean.r5}" label="R" itemLabel="3" id="r5">3
+                <f:validator validatorId="rValidator"/>
+            </h:selectBooleanCheckbox>
+
+            <h:message for="r1" style="color:red"/>
+            <h:message for="r2" style="color:red"/>
+            <h:message for="r3" style="color:red"/>
+            <h:message for="r4" style="color:red"/>
+            <h:message for="r5" style="color:red"/>
+
+            <h:inputHidden id="fromcanvas" value="#{Bean.fromCanvas}"></h:inputHidden>
+            <h:inputHidden id="x_hidden" value="#{Bean.x}"></h:inputHidden>
+
+            <!-- todo Переделать кнопку для отправки -->
+            <h:commandButton action="#{Bean.addToList()}" value="Отправить" id="submitButton">
+
+            </h:commandButton>
+        </h:form>
+    </div>
+
+
+
+    <h:form>
+        <h:commandLink value="К начальной странице" action="index" ></h:commandLink>
+    </h:form>
+
+
+    <script>
+        //r Радиус, который мы используем для отрисовки, по дефолту равен 1
+        //todo ТУТ ИЗМЕНИЛ РАДИУС, БЫЛ  document.getElementById("r").value * 100 / 3 ОБРАТНО ВЕРНУТЬ!!!
+        toDrawShapes(250, 250, r * 100 / 3, "purple", 0);
+
+
+        toDrawCartesianSystem(250, 250, r * 100 / 3, "green", 2);
+
+
+        let eventsForR1 = document.getElementById("formWithButton:r1");
+        let eventsForR2 = document.getElementById("formWithButton:r2");
+        let eventsForR3 = document.getElementById("formWithButton:r3");
+        let eventsForR4 = document.getElementById("formWithButton:r4");
+        let eventsForR5 = document.getElementById("formWithButton:r5");
+
+        eventsForR1.addEventListener("click", setRIfSelectedR1, false);
+        eventsForR1.addEventListener("change", toDrawShapesAfterChangeR, false);
+        eventsForR1.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+
+        eventsForR2.addEventListener("click", setRIfSelectedR2, false);
+        eventsForR2.addEventListener("change", toDrawShapesAfterChangeR, false);
+        eventsForR2.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+
+        eventsForR3.addEventListener("click", setRIfSelectedR3, false);
+        eventsForR3.addEventListener("change", toDrawShapesAfterChangeR, false);
+        eventsForR3.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+
+        eventsForR4.addEventListener("click", setRIfSelectedR4, false);
+        eventsForR4.addEventListener("change", toDrawShapesAfterChangeR, false);
+        eventsForR4.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+
+        eventsForR5.addEventListener("click", setRIfSelectedR5, false);
+        eventsForR5.addEventListener("change", toDrawShapesAfterChangeR, false);
+        eventsForR5.addEventListener("change", toDrawCartesianSystemAfterChangeR, false);
+        // todo  ОСТАЛСЯ БАГ, когда отключаешь чек, то он ставит этот радиус....
+        let eventsForCanvas = document.getElementById("circlesCanvas");
+        eventsForCanvas.addEventListener("click", check, false);
+
+
+        //  let eventsForR = document.getElementById("r");
+
+
+    </script>
+
+</h:body>
+
+</html>
