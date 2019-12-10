@@ -1,3 +1,5 @@
+import com.sun.istack.internal.NotNull;
+
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
@@ -10,7 +12,7 @@ public class Bean implements Serializable {
     private String x=null;
     private String y=null;
     private String r="1";
-    private boolean r1=false;
+    private boolean r1=true; //Сделал true, чтобы при первой загрузке был выбран
     private boolean r2=false;
     private boolean r3=false;
     private boolean r4=false;
@@ -74,9 +76,9 @@ public class Bean implements Serializable {
     public String getY(){
         return y;
     }
-    public String getR(){
-        return r;
-    }
+//    public String getR(){
+//        return r;
+//    }
     private void setRFromBoolean(){
         if(r1) r="1";
         if(r2) r="1.5";
@@ -85,7 +87,7 @@ public class Bean implements Serializable {
         if(r5) r="3";
     }
 
-    public void setX(String x){
+    public void setX( String x){
         if(x.isEmpty())
             return;
         double xd = Double.parseDouble(x.trim().replace(",","."));
