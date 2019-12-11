@@ -1,29 +1,24 @@
 //todo оптимизировать всё, для будущей отладки
 
-let dotArr = Array();
-
 class Dot {
-    constructor(x,y,r){
+    constructor(x,y,r,result){
 
         this.x=x;
         this.y=y;
         this.r=r;
+        this.result=result;
+
     }
 
 }
 
-function checkDot(d){
-    if(d.x<=0&&d.y<=0 && d.x>=-d.r&&d.y>=-d.r) return true;
-    if(d.x<=0 && d.y>=0 && d.y<= d.x*2+d.r) return true;
-    if(d.x>=0 && d.y <=0 && d.x*d.x+d.y*d.y <d.r*d.r/4) return true;
-    return false;
-}
+// function checkDot(d){
+//     if(d.x<=0&&d.y<=0 && d.x>=-d.r&&d.y>=-d.r) return true;
+//     if(d.x<=0 && d.y>=0 && d.y<= d.x*2+d.r) return true;
+//     if(d.x>=0 && d.y <=0 && d.x*d.x+d.y*d.y <d.r*d.r/4) return true;
+//     return false;
+// }
 
-function drawAll(){
-    dotArr.forEach(function(item) {
-        toDrawCirclesOnCanvas(item)
-    });
-}
 
 
 let r = 1; //Радиус, который мы используем для отрисовки, по дефолту равен 1
@@ -55,18 +50,15 @@ function setRIfSelectedR5() {
 }
 
 
-function toDrawCirclesOnCanvas(d) {
+function toDrawCirclesOnCanvas(result,pixelX,pixelY,oldRadius) {
 //todo эти атрибуты временны
-    let result = checkDot(d);
-    let pixelX = d.x;
-    let pixelY=d.y;
-    let oldRadius=d.r;
     alert(result);
     alert(pixelX);
     alert(pixelY);
     alert(oldRadius);
     let canvas = document.getElementById("circlesCanvas");
     let context = canvas.getContext('2d');
+    //todo
     let newRadius = document.getElementById("r").value;
     // alert("Входной пиксель по Х:" + pixelX);
     // alert("Входной пиксель по Y:" + pixelY);
@@ -284,8 +276,6 @@ function check() { //todo сделать нейминг
 
 //Функция для отправки формы от пользователя на сервер через canvas
 function createFormForCanvas(x, y, r) {
-    dotArr.push(new Dot(x,y,r));
-    alert(dotArr.length)
     document.getElementById("formWithButton:x_hidden").value = x;
     document.getElementById("formWithButton:y").value = y;
     let button = document.getElementById("formWithButton:submitButton");

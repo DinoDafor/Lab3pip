@@ -5,7 +5,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ace="http://www.icefaces.org/icefaces/components">
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+     >
+<!--xmlns:p="http://primefaces.org/ui"-->
 
 <h:head>
 
@@ -14,7 +16,7 @@
     <!--todo сделать норм css  -->
     <h:outputStylesheet name="style.css" library="css"/>
 </h:head>
-<h:body  onload="drawAll()">
+<h:body>
     <header>Митин Михаил Владиславович и Бондаренко Михаил Викторович <br/>P3200<br/> Вариант 200040</header>
 
     <!-- todo h:inputHidden нужен для канваса, наверное -->
@@ -70,10 +72,11 @@
             <h:inputHidden id="x_hidden" value="#{Bean.x}"></h:inputHidden>
 
             <!-- todo Переделать кнопку для отправки -->
-            <h:commandButton action="#{Bean.addToList()}" value="Отправить" id="submitButton">
+            <h:commandButton action="#{Bean.addToList()}" value="Отправить" id="submitButton"/>
 
 
-                <ace:dataTable id="dotsTable"
+
+            <ace:dataTable id="dots"
                                var="dot"
                                paginator="true"
                                paginatorPosition="bottom"
@@ -101,7 +104,6 @@
 
                 </ace:dataTable>
 
-            </h:commandButton>
         </h:form>
     </div>
 
@@ -151,11 +153,19 @@
         eventsForCanvas.addEventListener("click", check, false);
 
 
+//formWithButton:dots: I :xCell
+        //formWithButton:dots: I :yCell
+//formWithButton:dots: I :rCell
+//         formWithButton:dots: I :resultCell
 
 
 
         //  let eventsForR = document.getElementById("r");
+        // document.getElementById("dots")
+        // //получить x,y,r,result из таблицы
 
+        //     toDrawCirclesOnCanvas()
+        // }
 
     </script>
 
