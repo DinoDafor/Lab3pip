@@ -12,12 +12,11 @@ public class YValidator implements Validator {
         System.out.println("Значение value в yValidator:" + value);
         if (value == null) {
             throw new ValidatorException(new FacesMessage("Это поле должно быть заполнено!"));
-        } else if (value instanceof Number) {
-            //тут скорее всего, можно легче написать
+        }
             double newValue = ((Number) value).doubleValue();
             if (newValue > 5.0 || newValue < -5.0) {
                 throw new ValidatorException(new FacesMessage("Число должно быть в диапозоне от -5.0 до 5.0"));
-            }
+
         }
 
     }
