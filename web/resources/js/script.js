@@ -1,5 +1,4 @@
 //todo оптимизировать всё, для будущей отладки
-
 class Dot {
     constructor(x,y,r,result){
 
@@ -269,16 +268,19 @@ function check() { //todo сделать нейминг
     let y = pixelY / (100 / 3);//100 пикселей, это шаг мой; 3 это граница по R
 
 
-    createFormForCanvas(x, y, r);
+    createFormForCanvas(x, y);
 
 
 }
 
 //Функция для отправки формы от пользователя на сервер через canvas
-function createFormForCanvas(x, y, r) {
-    document.getElementById("formWithButton:x_hidden").value = x;
-    document.getElementById("formWithButton:y").value = y;
-    let button = document.getElementById("formWithButton:submitButton");
+function createFormForCanvas(x, y) {
+
+    document.getElementById("formFromCanvas:x_hidden").value = x;
+    document.getElementById("formFromCanvas:y_hidden").value = y;
+    document.getElementById("formFromCanvas:r_hidden").value = r;
+    document.getElementById("formFromCanvas:fromcanvas").value = true;
+    let button = document.getElementById("formFromCanvas:submitButton1");
     button.click();
 }
 

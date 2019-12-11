@@ -93,6 +93,10 @@ public class Bean implements Serializable {
         return y;
     }
 
+    public double getR() {
+        return r;
+    }
+
     //    public String getR(){
 //        return r;
 //    }
@@ -112,6 +116,10 @@ public class Bean implements Serializable {
 
     public void setY(double y) {
         this.y = y;
+    }
+
+    public void setR(double r) {
+        this.r = r;
     }
 
     Connection connection;
