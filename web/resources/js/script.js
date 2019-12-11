@@ -251,36 +251,11 @@ function check() { //todo сделать нейминг
 }
 
 //Функция для отправки формы от пользователя на сервер через canvas
-function createFormForCanvas(x, y, r) {
-    //todo переделать под новый вариант
-
-
-    alert("Зашли в createFormForCanvas");
-    alert("x по канвасу равен" + x);
-    alert(document.getElementById("formWithButton:x_hidden").value + " x до переопределения");
-
+function createFormForCanvas(x, y,) {
     document.getElementById("formWithButton:x_hidden").value = x;
-    alert(document.getElementById("formWithButton:x_hidden").value + " x после переопределения");
-
-
-    document.getElementById("formWithButton:y").value = y;
+    document.getElementById("formWithButton:y_hidden").value = y;
     let button = document.getElementById("formWithButton:submitButton");
-
-
-
-
     button.click();
-    // let form = document.createElement('form');
-    //
-    // form.action = "validate";
-    //
-    // form.method = "POST";
-    // form.hidden = true;
-    // form.innerHTML = "<input name= 'x' value=\"" + x + "\">" + "<input name= 'y' value=\"" + y + "\">" + "<input name= 'r' value=\"" + r + "\">";// + '<input name="y" value="1" id="yC">' + '<input name="r" value="1" id="rC" >";
-    // document.body.append(form);
-    //
-    // form.submit();
-
 }
 
 

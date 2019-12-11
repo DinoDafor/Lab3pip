@@ -170,7 +170,7 @@ public class Bean implements Serializable {
         } catch (Exception e) {
             System.out.println(e);
         }// todo это переход на начальную? зачем?
-        return "index.xhtml?faces-redirect=true";
+        return "application.xhtml?faces-redirect=true";
     }
 
     public String toIndex() {
@@ -178,6 +178,6 @@ public class Bean implements Serializable {
     }
 
     public String toTable() {
-        return "table.xhtml?faces-redirect=true";
+        return "application.xhtml?faces-redirect=true";
     }
 }
