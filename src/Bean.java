@@ -182,7 +182,7 @@ public class Bean implements Serializable {
         setRFromBoolean(); //Устанавливаем R изходя из boolean значений
         x = Math.round(x * 100) / 100.0;
         y = Math.round(y * 100) / 100.0;
-        r = Math.round(y * 100) / 100.0;
+        y = Math.round(r * 100) / 100.0;
         try {
             connection = getConnection();
 
