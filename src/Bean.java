@@ -109,22 +109,27 @@ public class Bean implements Serializable {
     }
 
     public void setX(double x) {
+        if (fromCanvas) {
+            this.x = x;
+        } else this.x = x / 10;
 
-        this.x = x;
+        fromCanvas=false;
+
+
     }
 
     public double getXForSlider() {
-        return (x*10);
+        return (x * 10);
     }
-    public void setXForSlider(double x){
-        this.x=x/10;
+
+    public void setXForSlider(double x) {
+        this.x = x / 10;
     }
 
 //    public double testF(double x){
 //        setXForSlider(x);
 //       return getXForSlider();
 //    }
-
 
 
     public void setY(double y) {
@@ -165,15 +170,14 @@ public class Bean implements Serializable {
         c.close();
         for (int i = 0; i < list.size(); i++) {
             System.out.println("Отладка в getDoList...");
-            System.out.println("X равен " + list.get(i).getX()+ " под номером " + i );
-            System.out.println("Y равен " + list.get(i).getY()+ " под номером " + i );
-            System.out.println("R равен " + list.get(i).getR()+ " под номером " + i );
-            System.out.println("RESULT равен " + list.get(i).isInArea()+ " под номером " + i );
+            System.out.println("X равен " + list.get(i).getX() + " под номером " + i);
+            System.out.println("Y равен " + list.get(i).getY() + " под номером " + i);
+            System.out.println("R равен " + list.get(i).getR() + " под номером " + i);
+            System.out.println("RESULT равен " + list.get(i).isInArea() + " под номером " + i);
         }
 
         return list;
     }
-
 
 
     public String addToList() {
