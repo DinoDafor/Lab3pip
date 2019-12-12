@@ -1,15 +1,16 @@
 //todo оптимизировать всё, для будущей отладки
-class Dot {
-    constructor(x,y,r,result){
 
-        this.x=x;
-        this.y=y;
-        this.r=r;
-        this.result=result;
-
-    }
-
-}
+// class Dot {
+//     constructor(x,y,r,result){
+//
+//         this.x=x;
+//         this.y=y;
+//         this.r=r;
+//         this.result=result;
+//
+//     }
+//
+// }
 
 // function checkDot(d){
 //     if(d.x<=0&&d.y<=0 && d.x>=-d.r&&d.y>=-d.r) return true;
@@ -19,42 +20,129 @@ class Dot {
 // }
 
 
-
 let r = 1; //Радиус, который мы используем для отрисовки, по дефолту равен 1
 
 
+
+
+
 function setRIfSelectedR1() {
-    r = 1;
+    //Чекбоксы, html элементы, можно сделать по-другому, но за ночь до сдачи...
+    let r1HTML = document.getElementById("formWithButton:r1");
+    let r2HTML = document.getElementById("formWithButton:r2");
+    let r3HTML = document.getElementById("formWithButton:r3");
+    let r4HTML = document.getElementById("formWithButton:r4");
+    let r5HTML = document.getElementById("formWithButton:r5");
+    //Здесь хранятся значения, выбраны ли флаги
+    let r1IsChecked = r1HTML.checked;
+    let r2IsChecked = r2HTML.checked;
+    let r3IsChecked = r3HTML.checked;
+    let r4IsChecked = r4HTML.checked;
+    let r5IsChecked = r5HTML.checked;
+
+    if (!(r2IsChecked || r3IsChecked || r4IsChecked  || r5IsChecked) ) {
+        r = 1;
+    } else r1HTML.checked=false;
+
+
 
 }
 
 function setRIfSelectedR2() {
-    r = 1.5;
+    //Чекбоксы, html элементы, можно сделать по-другому, но за ночь до сдачи...
+
+    let r1HTML = document.getElementById("formWithButton:r1");
+    let r2HTML = document.getElementById("formWithButton:r2");
+    let r3HTML = document.getElementById("formWithButton:r3");
+    let r4HTML = document.getElementById("formWithButton:r4");
+    let r5HTML = document.getElementById("formWithButton:r5");
+    //Здесь хранятся значения, выбраны ли флаги
+    let r1IsChecked = r1HTML.checked;
+    let r2IsChecked = r2HTML.checked;
+    let r3IsChecked = r3HTML.checked;
+    let r4IsChecked = r4HTML.checked;
+    let r5IsChecked = r5HTML.checked;
+
+
+    if (!(r1IsChecked || r3IsChecked || r4IsChecked  || r5IsChecked) ) {
+        r = 1.5;
+    } else r2HTML.checked=false;
+
 
 }
 
 function setRIfSelectedR3() {
-    r = 2;
+    //Чекбоксы, html элементы, можно сделать по-другому, но за ночь до сдачи...
+    let r1HTML = document.getElementById("formWithButton:r1");
+    let r2HTML = document.getElementById("formWithButton:r2");
+    let r3HTML = document.getElementById("formWithButton:r3");
+    let r4HTML = document.getElementById("formWithButton:r4");
+    let r5HTML = document.getElementById("formWithButton:r5");
+    //Здесь хранятся значения, выбраны ли флаги
+    let r1IsChecked = r1HTML.checked;
+    let r2IsChecked = r2HTML.checked;
+    let r3IsChecked = r3HTML.checked;
+    let r4IsChecked = r4HTML.checked;
+    let r5IsChecked = r5HTML.checked;
+
+    if (!(r2IsChecked || r1IsChecked || r4IsChecked  || r5IsChecked) ) {
+        r = 2;
+    } else r3HTML.checked=false;
+
 
 }
 
 function setRIfSelectedR4() {
-    r = 2.5;
+
+    //Чекбоксы, html элементы, можно сделать по-другому, но за ночь до сдачи...
+    let r1HTML = document.getElementById("formWithButton:r1");
+    let r2HTML = document.getElementById("formWithButton:r2");
+    let r3HTML = document.getElementById("formWithButton:r3");
+    let r4HTML = document.getElementById("formWithButton:r4");
+    let r5HTML = document.getElementById("formWithButton:r5");
+    //Здесь хранятся значения, выбраны ли флаги
+    let r1IsChecked = r1HTML.checked;
+    let r2IsChecked = r2HTML.checked;
+    let r3IsChecked = r3HTML.checked;
+    let r4IsChecked = r4HTML.checked;
+    let r5IsChecked = r5HTML.checked;
+    if (!(r1IsChecked || r2IsChecked || r3IsChecked  || r5IsChecked) ) {
+        r = 2.5;
+    } else r4HTML.checked=false;
+
 
 }
 
 function setRIfSelectedR5() {
-    r = 3;
+
+    //Чекбоксы, html элементы, можно сделать по-другому, но за ночь до сдачи...
+    let r1HTML = document.getElementById("formWithButton:r1");
+    let r2HTML = document.getElementById("formWithButton:r2");
+    let r3HTML = document.getElementById("formWithButton:r3");
+    let r4HTML = document.getElementById("formWithButton:r4");
+    let r5HTML = document.getElementById("formWithButton:r5");
+    //Здесь хранятся значения, выбраны ли флаги
+    let r1IsChecked = r1HTML.checked;
+    let r2IsChecked = r2HTML.checked;
+    let r3IsChecked = r3HTML.checked;
+    let r4IsChecked = r4HTML.checked;
+    let r5IsChecked = r5HTML.checked;
+
+    if (!(r1IsChecked || r2IsChecked || r3IsChecked  || r4IsChecked) ) {
+        r = 3;
+    } else r5HTML.checked=false;
 
 }
 
 
-function toDrawCirclesOnCanvas(result,pixelX,pixelY,oldRadius) {
+function toDrawCirclesOnCanvas(result, pixelX, pixelY, oldRadius) {
 //todo эти атрибуты временны
     alert(result);
     alert(pixelX);
     alert(pixelY);
     alert(oldRadius);
+
+    //походу будем хранить пиксели здесь, сменить ввод на x,y, а pixel
     let canvas = document.getElementById("circlesCanvas");
     let context = canvas.getContext('2d');
     //todo
@@ -295,8 +383,6 @@ function showTime() {
 }
 
 
-
-
 // function validate() {
 // // alert("вошли в validate");
 // // //todo проверить X на клиент. валидации
@@ -361,12 +447,6 @@ function toDrawShapesAfterChangeR() {
     toDrawShapes(250, 250, radius, "purple", 0);
 }
 
-
-// function toDrawCirclesAfterChangeR(){
-//     let r = document.getElementById("r").value;
-//     let radius = 100*r/3;
-//     toDrawCirclesOnCanvas();
-// }
 
 //todo в 3 убрал на стр
 // let eventsForCanvas = document.getElementById("circlesCanvas");
