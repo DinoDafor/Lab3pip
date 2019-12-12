@@ -109,9 +109,22 @@ public class Bean implements Serializable {
     }
 
     public void setX(double x) {
-        //todo Предлагаю ничего тут не добавлять, пусть сеттеры будут стандартными, а остальной функцианал перенести в др функции
+
         this.x = x;
     }
+
+    public double getXForSlider() {
+        return (x*10);
+    }
+    public void setXForSlider(double x){
+        this.x=x/10;
+    }
+
+//    public double testF(double x){
+//        setXForSlider(x);
+//       return getXForSlider();
+//    }
+
 
 
     public void setY(double y) {
@@ -161,8 +174,15 @@ public class Bean implements Serializable {
         return list;
     }
 
+
+
     public String addToList() {
+
+
         setRFromBoolean(); //Устанавливаем R изходя из boolean значений
+        x = Math.round(x * 100) / 100.0;
+        y = Math.round(y * 100) / 100.0;
+        r = Math.round(y * 100) / 100.0;
         try {
             connection = getConnection();
 

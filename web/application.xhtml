@@ -29,16 +29,18 @@
         </div>
 
 
-        <h:form onsubmit="alert('!!!!')" id="formWithButton">
+        <h:form id="formWithButton">
             <!--todo  stepPercent НЕПРАВИЛЬНЫЙ -->
-            X: <ace:sliderEntry value="#{Bean.x}" min="-4" max="4" showLabels="true" stepPercent="2.5"
+            X(-4 4): <ace:sliderEntry value="#{Bean.x}" min="-40" max="40" stepPercent="1.25"
                                 id="x" label="X"/>
             <br/>
             Y:
             <h:inputText a:placeholder="(-5...5)" id="y" value="#{Bean.y}" label="Y"
-                         converterMessage="Введите, пожалуйста, число">
+                         >
+<!--                converterMessage="Введите, пожалуйста, число"-->
 <!--               <f:convertNumber pattern="#0.000"/>-->
                 <f:validator validatorId="yValidator"/>
+                <f:converter converterId="yConverter"/>
             </h:inputText> <h:message for="y" style="color:red"/>
 
 
@@ -106,7 +108,7 @@
         </h:form>
     </div>
 
-    <h:form onsubmit="alert('!!!!')" id="formFromCanvas">
+    <h:form id="formFromCanvas">
         <h:inputHidden id="fromcanvas" value="#{Bean.fromCanvas}"></h:inputHidden>
         <h:inputHidden id="x_hidden" value="#{Bean.x}"></h:inputHidden>
         <h:inputHidden id="y_hidden" value="#{Bean.y}"></h:inputHidden>
