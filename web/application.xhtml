@@ -6,6 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
      >
 <!--xmlns:p="http://primefaces.org/ui"-->
 
@@ -116,6 +117,11 @@
         <h:commandButton action="#{Bean.addToList()}" value="Отправить" id="submitButton1"  style="display: none"/>
     </h:form>
 
+    <div id="tabledata">
+        <c:forEach var="dot" items="#{Bean.list}">
+            <div data-x="#{dot.x}" data-y="#{dot.y}" data-r="#{dot.r}"></div>
+        </c:forEach>
+    </div>
     <h:form>
         <h:commandLink value="К начальной странице" action="index"></h:commandLink>
     </h:form>

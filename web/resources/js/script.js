@@ -20,6 +20,70 @@
 // }
 
 
+let dotValues = [];
+function checkDot(x,y,r) {
+    if(x<=0&&y<=0 && x>=-r&&y>=-r) return true;
+    if(x<=0 && y>=0 && y<= x*2+r) return true;
+    if(x>=0 && y <=0 && x*x+y*y <r*r/4) return true;
+    return false;
+}
+
+function drawAllDots() {
+    if(dotValues.length===0){
+        dotValues = document.getElementById("tabledata").querySelectorAll("*");
+        document.getElementById("tabledata").innerHTML="";
+    }
+
+    let canvas = document.getElementById("circlesCanvas");
+    let context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < dotValues.length; i++) {
+        let x = dotValues[i].getAttribute("data-x");
+        let y = dotValues[i].getAttribute("data-y");
+        let inarea = checkDot(x,y,r);
+        toDrawCirclesOnCanvas(inarea,x,y,r)
+    }
+}
+
+function toDrawCirclesOnCanvas(result,x,y,oldRadius) {
+//todo эти атрибуты временны
+    let canvas = document.getElementById("circlesCanvas");
+    let context = canvas.getContext('2d');
+    //todo
+    let newRadius = r;
+
+
+    let pixelX = x * (100 / 3.0);
+    let  pixelY = (y * (100 / 3.0));
+
+    pixelX = (pixelX / oldRadius) * newRadius + 125;
+    pixelY = (pixelY / oldRadius) * newRadius - 125;
+    pixelY = -pixelY;
+
+
+    // alert("Выходные пиксель по Х:" + pixelX);
+    // alert("Выходные пиксель по Y:" + pixelY);
+
+
+    context.beginPath();
+    //todo оптимизировать
+    if (result) {
+        context.strokeStyle = "green";
+        context.fillStyle = "green";
+
+    } else {
+        context.strokeStyle = "red";
+        context.fillStyle = "red";
+    }
+    //todo изменить радиус кружка
+    context.arc(pixelX, pixelY, 2.5, 0, Math.PI * 2);
+    context.fill();
+    context.stroke();
+
+
+}
+
+
 let r = 1; //Радиус, который мы используем для отрисовки, по дефолту равен 1
 
 
@@ -66,6 +130,7 @@ function setRIfSelectedR2() {
 
     if (!(r1IsChecked || r3IsChecked || r4IsChecked  || r5IsChecked) ) {
         r = 1.5;
+        console.log(r);
     } else r2HTML.checked=false;
 
 
@@ -134,54 +199,6 @@ function setRIfSelectedR5() {
 
 }
 
-
-function toDrawCirclesOnCanvas(result, pixelX, pixelY, oldRadius) {
-//todo эти атрибуты временны
-    alert(result);
-    alert(pixelX);
-    alert(pixelY);
-    alert(oldRadius);
-
-    //походу будем хранить пиксели здесь, сменить ввод на x,y, а pixel
-    let canvas = document.getElementById("circlesCanvas");
-    let context = canvas.getContext('2d');
-    //todo
-    let newRadius = document.getElementById("r").value;
-    // alert("Входной пиксель по Х:" + pixelX);
-    // alert("Входной пиксель по Y:" + pixelY);
-
-
-    // alert("Старый радиус равен:" + oldRadius);
-
-    // alert("Новый радиус равен: " + newRadius);)
-
-
-    pixelX = (pixelX / oldRadius) * newRadius + 125;
-    pixelY = (pixelY / oldRadius) * newRadius - 125;
-    pixelY = -pixelY;
-
-
-    // alert("Выходные пиксель по Х:" + pixelX);
-    // alert("Выходные пиксель по Y:" + pixelY);
-
-
-    context.beginPath();
-    //todo оптимизировать
-    if (result) {
-        context.strokeStyle = "green";
-        context.fillStyle = "green";
-
-    } else {
-        context.strokeStyle = "red";
-        context.fillStyle = "red";
-    }
-    //todo изменить радиус кружка
-    context.arc(pixelX, pixelY, 2.5, 0, Math.PI * 2);
-    context.fill();
-    context.stroke();
-
-
-}
 
 function toDrawShapes(widthOfCartesianSystem, heightOfCartesianSystem, radius, colorOfShapes, lineWidth) {
     //Слой для рисования фигур
@@ -329,6 +346,7 @@ function toDrawCartesianSystem(widthOfCartesianSystem, heightOfCartesianSystem, 
     context.fillText("R/2", plusRadDivTwoOfX, centre - marking);
     context.fillText("R", plusRadOfX, centre - marking);
     context.stroke();
+    drawAllDots();
 
 
 }
@@ -445,6 +463,7 @@ function toDrawShapesAfterChangeR() {
 
     let radius = 100 * r / 3;
     toDrawShapes(250, 250, radius, "purple", 0);
+    drawAllDots();
 }
 
 
