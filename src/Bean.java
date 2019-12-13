@@ -125,6 +125,13 @@ public class Bean implements Serializable {
 
     public void setR(double r) {
         this.r = r;
+        r1=false;
+        r2=false;
+        r3=false;
+        r4=false;
+        r5=false;
+
+
     }
 
     Connection connection;
@@ -155,13 +162,6 @@ public class Bean implements Serializable {
         rs.close();
         st.close();
         c.close();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("Отладка в getDoList...");
-            System.out.println("X равен " + list.get(i).getX() + " под номером " + i);
-            System.out.println("Y равен " + list.get(i).getY() + " под номером " + i);
-            System.out.println("R равен " + list.get(i).getR() + " под номером " + i);
-            System.out.println("RESULT равен " + list.get(i).isInArea() + " под номером " + i);
-        }
 
         return list;
     }
