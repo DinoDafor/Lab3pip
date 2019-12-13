@@ -100,13 +100,13 @@ public class Bean implements Serializable {
     //    public String getR(){
 //        return r;
 //    }
-//    private void setRFromBoolean() {
-//        if (r1) r = 1;
-//        if (r2) r = 1.5;
-//        if (r3) r = 2;
-//        if (r4) r = 2.5;
-//        if (r5) r = 3;
-//    }
+    private void setRFromBoolean() {
+        if (r1) r = 1;
+        if (r2) r = 1.5;
+        if (r3) r = 2;
+        if (r4) r = 2.5;
+        if (r5) r = 3;
+    }
 
     public void setX(double x) {
         if (fromCanvas) {
@@ -170,7 +170,7 @@ public class Bean implements Serializable {
     public String addToList() {
 
 
-//        setRFromBoolean(); //Устанавливаем R изходя из boolean значений
+        setRFromBoolean(); //Устанавливаем R изходя из boolean значений
         x = Math.round(x * 100) / 100.0; //Округляем
         y = Math.round(y * 100) / 100.0;
         r = Math.round(r * 100) / 100.0;
