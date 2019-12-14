@@ -128,6 +128,14 @@
     <script>
         //r Радиус, который мы используем для отрисовки, по дефолту равен 1
         //todo ТУТ ИЗМЕНИЛ РАДИУС, БЫЛ  document.getElementById("r").value * 100 / 3 ОБРАТНО ВЕРНУТЬ!!!
+        
+        //todo 13.12
+        if (document.getElementById("formWithButton:r1").checked) {r = 1;}
+        if (document.getElementById("formWithButton:r2").checked) {r = 1.5;}
+        if (document.getElementById("formWithButton:r3").checked) {r = 2;}
+        if (document.getElementById("formWithButton:r4").checked) {r = 2.5;}
+        if (document.getElementById("formWithButton:r5").checked) {r = 3;}
+
         toDrawShapes(250, 250, r * 100 / 3, "purple", 0);
 
         toDrawCartesianSystem(250, 250, r * 100 / 3, "green", 2);
