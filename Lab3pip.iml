@@ -19,29 +19,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="JBoss 18.0.0.Final" level="application_server_libraries" />
-    <orderEntry type="library" name="Mojarra-2.4.0" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/OneDrive/Desktop/ICEfaces-4.3.0-bin/icefaces/lib/icefaces.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/OneDrive/Desktop/ICEfaces-4.3.0-bin/icefaces/lib/icefaces-ace.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$USER_HOME$/OneDrive/Desktop/ICEfaces-4.3.0-bin/icefaces/lib/icefaces-ace.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="library" exported="" scope="PROVIDED" name="JBoss 18.0.0.Final" level="application_server_libraries" />
+    <orderEntry type="library" exported="" name="Mojarra-2.4.0" level="project" />
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/annotations/17.0.0/annotations-17.0.0.jar!/" />
@@ -50,7 +30,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/postgresql-42.2.8.jar!/" />
@@ -59,13 +39,33 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/primefaces-7.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/icefaces.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/icefaces-ace.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/lib/icefaces-ace.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
   </component>

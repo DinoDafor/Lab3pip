@@ -14,6 +14,9 @@
           <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/17.0.0/annotations-17.0.0.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/postgresql-42.2.8.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/primefaces-7.0.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/icefaces-ace.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/icefaces.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/javax.faces-2.4.0.jar" />
         </element>
       </element>
     </root>
