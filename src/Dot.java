@@ -22,7 +22,7 @@ public class Dot implements Serializable {
     public static boolean check(double x, double y, double r){
         if(x<=0&&y<=0 && x>=-r&&y>=-r) return true;
         if(x<=0 && y>=0 && y<= x*2+r) return true;
-        if(x>=0 && y <=0 && x*x+y*y <r*r/4) return true;
+        if(x>=0 && y <=0 && x*x+y*y <=r*r/4) return true;
         return false;
     }
 

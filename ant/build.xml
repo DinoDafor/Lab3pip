@@ -25,7 +25,7 @@
 	<!--Make a war-->
 	<target name="build" depends="compile">
 		<mkdir dir="${war.dir}"/>
-			<war destfile="${war.dir}/${ant.project.name}.war" webxml="${web.web-xml}" >a
+			<war destfile="${war.dir}/${ant.project.name}.war" webxml="${web.web-xml}" >
 				<lib dir="${lib.dir}"/>
 				<classes dir="${classes.dir}"/>
 				<fileset dir="${web.dir}">
