@@ -25,25 +25,17 @@
 	<!--Make a war-->
 	<target name="build" depends="compile">
 		<mkdir dir="${war.dir}"/>
-			<war destfile="${war.dir}/${ant.project.name}.war" webxml="${web.web-xml}">
+			<war destfile="${war.dir}/${ant.project.name}.war" webxml="${web.web-xml}" >a
 				<lib dir="${lib.dir}"/>
 				<classes dir="${classes.dir}"/>
+				<fileset dir="${web.dir}">
+					<include name="**/*"/>
+				</fileset>
 				<manifest>
 					<attribute name="Specification-Version" value="${info.version}"/>
 					<attribute name="MD5-Digest" value="${checksum.md5}"/>
 					<attribute name="SHA1-Digest" value="${checksum.sha1}"/>
 				</manifest>
-				 <fileset dir="${web.dir}">
-				 	<include name="**/*"/>
-				 </fileset>
-<!--				  <fileset dir="${classes.dir}">-->
-<!--				 	<include name="*"/>-->
-<!--				 	<exclude name="*Test*"/>-->
-<!--				 </fileset>-->
-<!--				todo это добавления javadoc`a в джарник, нужно ли?-->
-<!--				 <fileset dir="${doc.dir}">-->
-<!--				 	<include name="*"/>-->
-<!--				 </fileset>-->
 			</war>
 	</target>
 
@@ -63,7 +55,7 @@
 	    </junit>
 	</target>
 
-    <!-- Make checsums and javadoc -->
+    <!-- Make checksums and javadoc -->
     <target name="doc">
         <checksum todir="." algorithm="MD5" format="MD5SUM"  totalproperty="md5">
             <fileset dir="${web.dir}" />
@@ -96,6 +88,10 @@
 		<delete dir="${delete.web.inf}"/>
 		<delete dir="${delete.web.resources}"/>
 		<delete dir="${test.report}"/>
+		<delete dir="${doc.dir}"/>
+		<delete dir="${war.dir}"/>
+		<delete dir="${classes.dir}${javac.target}"/>
+		<delete dir="${war.dir}${javac.target}"/>
 		<delete>
 			<fileset dir=".">
 				<include name="*.MD5"/>
@@ -105,7 +101,7 @@
 	</target>
 
 	<!--Build with another java version-->
-	<target name="env">
+	<target name="env" >
 		<mkdir dir="${classes.dir}${javac.target}"/>
 		<javac destdir="${classes.dir}${javac.target}" srcdir="${src.dir}" includeAntRuntime="false" excludes="**/*Test*"  target="${javac.target}" source="${javac.source}" compiler="${javac.compiler}">
 			<classpath>
@@ -116,22 +112,16 @@
 		</javac>
 		<mkdir dir="${war.dir}${javac.target}"/>
 			<war destfile="${war.dir}${javac.target}/${ant.project.name}${javac.target}.war" webxml="${web.web-xml}">
+				<lib dir="${lib.dir}"/>
+				<classes dir="${classes.dir}${javac.target}"/>
+				<fileset dir="${web.dir}">
+					<include name="**/*"/>
+				</fileset>
 				<manifest>
 					<attribute name="Specification-Version" value="${info.version}"/>
-
 					<attribute name="MD5-Digest" value="${checksum.md5}"/>
 					<attribute name="SHA1-Digest" value="${checksum.sha1}"/>
 				</manifest>
-				 <fileset dir="${web.dir}">
-				 	<include name="**/*"/>
-				 </fileset>
-				  <fileset dir="${classes.dir}">
-				 	<include name="*"/>
-				 	<exclude name="*Test*"/>
-				 </fileset>
-				 <fileset dir="${doc.dir}">
-				 	<include name="*"/>
-				 </fileset>
 			</war>
 	</target>
 </project>
