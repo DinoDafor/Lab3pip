@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<project name="Lab3pipMSP" default="build" basedir=".." >
+	<property file="ant/build.properties"/>
+
+	<!--Compiling files-->
+	<target name="compile" depends="clean">
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${test.dir}"/>
+		<javac destdir="${classes.dir}" srcdir="${src.dir}" includeAntRuntime="false" excludes="**/*Test*">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+		<javac destdir="${test.dir}" srcdir="${src.dir}" includeAntRuntime="false" includes="**/*Test*">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<!--Make a war-->
+	<target name="build" depends="compile">
+		<mkdir dir="${war.dir}"/>
+			<war destfile="${war.dir}/${ant.project.name}.war" webxml="${web.web-xml}">
+				<manifest>
+					<attribute name="Specification-Version" value="${info.version}"/>
+					<attribute name="MD5-Digest" value="${checksum.md5}"/>
+					<attribute name="SHA1-Digest" value="${checksum.sha1}"/>
+				</manifest>
+				 <fileset dir="${web.dir}">
+				 	<include name="**/*"/>
+				 </fileset>
+				  <fileset dir="${classes.dir}">
+				 	<include name="*"/>
+				 	<exclude name="*Test*"/>
+				 </fileset>
+				 <fileset dir="${doc.dir}">
+				 	<include name="*"/>
+				 </fileset>
+			</war>
+	</target>
+
+<!-- Tests -->
+	<target name="test" depends="build">
+	<mkdir dir="${test.report}"/>
+	    <junit printsummary="on" haltonfailure="no">
+	    	<classpath>
+	       	 	<fileset dir="${lib.dir}" includes="*.jar"/>
+	        	<pathelement  location="${classes.dir}"/>
+	       		<pathelement  location="${test.dir}"/>
+	    	</classpath>
+	        <formatter type="plain" />
+	        <batchtest todir="${test.report}">
+	            <fileset dir="${test.dir}" includes="*Test*" />
+	        </batchtest> 
+	    </junit>
+	</target>
+
+    <!-- Make checsums and javadoc -->
+    <target name="doc">
+        <checksum todir="." algorithm="MD5" format="MD5SUM"  totalproperty="md5">
+            <fileset dir="${web.dir}" />
+            <fileset dir="${src.dir}" />
+        </checksum>
+        <echo>md5: ${md5} </echo>
+        <checksum todir="." algorithm="SHA-512" totalproperty="sha1">
+            <fileset dir="${web.dir}" />
+            <fileset dir="${src.dir}" />
+        </checksum>
+        <echo>sha1: ${sha1} </echo>
+        <propertyfile  file="ant/build.properties">
+            <entry key="checksum.md5"  value="${md5}" />
+            <entry key="checksum.sha1"  value="${sha1}" />
+        </propertyfile>
+        <mkdir dir="${doc.dir}"/>
+        <javadoc destdir="${doc.dir}">
+        	<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+            <fileset dir="${src.dir}" includes="*.java"/>
+        </javadoc>
+    </target>
+
+    <!--Delete compiled and temporary files -->
+	<target name="clean">
+		<delete dir="${classes.dir}"/>
+		<delete dir="${delete.web.inf}"/>
+		<delete dir="${delete.web.resources}"/>
+		<delete dir="${test.report}"/>
+		<delete>
+			<fileset dir=".">
+				<include name="*.MD5"/>
+				<include name="*.SHA-512"/>
+			</fileset> 
+		</delete>
+	</target>
+
+	<!--Build with another java version-->
+	<target name="env">
+		<mkdir dir="${classes.dir}${javac.target}"/>
+		<javac destdir="${classes.dir}${javac.target}" srcdir="${src.dir}" includeAntRuntime="false" excludes="**/*Test*"  target="${javac.target}" source="${javac.source}" compiler="${javac.compiler}">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+		<mkdir dir="${war.dir}${javac.target}"/>
+			<war destfile="${war.dir}${javac.target}/${ant.project.name}${javac.target}.war" webxml="${web.web-xml}">
+				<manifest>
+					<attribute name="Specification-Version" value="${info.version}"/>
+
+					<attribute name="MD5-Digest" value="${checksum.md5}"/>
+					<attribute name="SHA1-Digest" value="${checksum.sha1}"/>
+				</manifest>
+				 <fileset dir="${web.dir}">
+				 	<include name="**/*"/>
+				 </fileset>
+				  <fileset dir="${classes.dir}">
+				 	<include name="*"/>
+				 	<exclude name="*Test*"/>
+				 </fileset>
+				 <fileset dir="${doc.dir}">
+				 	<include name="*"/>
+				 </fileset>
+			</war>
+	</target>
+</project>

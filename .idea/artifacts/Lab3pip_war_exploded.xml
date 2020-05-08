@@ -9,14 +9,17 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Mojarra-2.4.0" />
-          <element id="file-copy" path="$USER_HOME$/OneDrive/Desktop/ICEfaces-4.3.0-bin/icefaces/lib/icefaces.jar" />
-          <element id="file-copy" path="$USER_HOME$/OneDrive/Desktop/ICEfaces-4.3.0-bin/icefaces/lib/icefaces-ace.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../ICEfaces-4.3.0-bin/icefaces/lib/icefaces.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../ICEfaces-4.3.0-bin/icefaces/lib/icefaces-ace.jar" />
           <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/17.0.0/annotations-17.0.0.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/postgresql-42.2.8.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/primefaces-7.0.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/icefaces-ace.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/icefaces.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/javax.faces-2.4.0.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/javax-inject.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/hamcrest-core-1.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/junit-4.13.jar" />
         </element>
       </element>
     </root>
