@@ -92,6 +92,7 @@
 		<delete dir="${war.dir}"/>
 		<delete dir="${classes.dir}${javac.target}"/>
 		<delete dir="${war.dir}${javac.target}"/>
+		<delete dir="${test.dir}"/>
 		<delete>
 			<fileset dir=".">
 				<include name="*.MD5"/>
