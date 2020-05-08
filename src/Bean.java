@@ -1,4 +1,3 @@
-import com.sun.istack.internal.NotNull;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -12,8 +11,8 @@ import java.util.List;
 public class Bean implements Serializable {
 
     private String url = "jdbc:postgresql://localhost:5432/dots";//Записываем url, в конце имя DB
-    private String nameOfAdmin = "postgres";// Имя
-    private String pass = "88dofodo";// Пароль
+    private String nameOfAdmin = "postgres";//Name
+    private String pass = "88dofodo";//Пароль
 
     private double x = 0;
     private double y = 0;

@@ -38,9 +38,10 @@
 				 	<include name="*"/>
 				 	<exclude name="*Test*"/>
 				 </fileset>
-				 <fileset dir="${doc.dir}">
-				 	<include name="*"/>
-				 </fileset>
+<!--				todo это добавления javadoc`a в джарник, нужно ли?-->
+<!--				 <fileset dir="${doc.dir}">-->
+<!--				 	<include name="*"/>-->
+<!--				 </fileset>-->
 			</war>
 	</target>
 
