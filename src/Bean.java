@@ -10,9 +10,9 @@ import java.util.List;
 @ApplicationScoped
 public class Bean implements Serializable {
 
-    private String url = "jdbc:postgresql://localhost:5432/dots";//Записываем url, в конце имя DB
-    private String nameOfAdmin = "postgres";//Name
-    private String pass = "88dofodo";//Пароль
+    private String url = "jdbc:postgresql://pg:5432/studs";//Записываем url, в конце имя DB
+    private String nameOfAdmin = "s263895";//Name
+    private String pass = "vcf781";//Пароль
 
     private double x = 0;
     private double y = 0;
@@ -152,7 +152,7 @@ public class Bean implements Serializable {
     public List<Dot> getDotList() throws ClassNotFoundException, SQLException {
         Connection c = getConnection();
         list = new ArrayList<Dot>(); //Коллекция для хранения точек, нужна для извлечения данных из DB
-        PreparedStatement st = c.prepareStatement("select x, y, r, inArea from dots");
+        PreparedStatement st = c.prepareStatement("select x, y, r, inArea from studs");
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
             Dot d = new Dot(rs.getDouble("x"), rs.getDouble("y"), rs.getDouble("r"), rs.getBoolean("inArea"));
@@ -177,7 +177,7 @@ public class Bean implements Serializable {
             connection = getConnection();
 
             System.out.println(x + " " + y + " " + r);
-            PreparedStatement st = connection.prepareStatement("INSERT INTO dots values(?, ?, ?, ?)");
+            PreparedStatement st = connection.prepareStatement("INSERT INTO studs values(?, ?, ?, ?)");
             st.setDouble(1, x);
             st.setDouble(2, y);
             st.setDouble(3, r);

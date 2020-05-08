@@ -7,7 +7,7 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/dots</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="studs@pg" uuid="819c78ef-b225-4b86-82b6-926174d8f0f9">
+    <data-source source="LOCAL" name="studs@pg" uuid="580b0734-dbc1-4fb4-b424-bfd6997ed9f7">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
