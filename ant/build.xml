@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="Lab3pipMSP" default="build" basedir=".." >
+<project name="lab3msp" default="build" basedir=".." >
 	<property file="ant/build.properties"/>
 
 	<!--Compiling files-->
@@ -26,6 +26,8 @@
 	<target name="build" depends="compile">
 		<mkdir dir="${war.dir}"/>
 			<war destfile="${war.dir}/${ant.project.name}.war" webxml="${web.web-xml}">
+				<lib dir="${lib.dir}"/>
+				<classes dir="${classes.dir}"/>
 				<manifest>
 					<attribute name="Specification-Version" value="${info.version}"/>
 					<attribute name="MD5-Digest" value="${checksum.md5}"/>
@@ -34,10 +36,10 @@
 				 <fileset dir="${web.dir}">
 				 	<include name="**/*"/>
 				 </fileset>
-				  <fileset dir="${classes.dir}">
-				 	<include name="*"/>
-				 	<exclude name="*Test*"/>
-				 </fileset>
+<!--				  <fileset dir="${classes.dir}">-->
+<!--				 	<include name="*"/>-->
+<!--				 	<exclude name="*Test*"/>-->
+<!--				 </fileset>-->
 <!--				todo это добавления javadoc`a в джарник, нужно ли?-->
 <!--				 <fileset dir="${doc.dir}">-->
 <!--				 	<include name="*"/>-->
