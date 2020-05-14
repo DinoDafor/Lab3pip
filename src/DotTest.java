@@ -35,7 +35,7 @@ public class DotTest {
      */
     @Test
     public void check2LeftTrue() {
-        assertTrue(Dot.check(-0.5, 0, 1));
+        assertTrue(Dot.check(-0.6, 0.1, 1));
     }//+
 
     /**

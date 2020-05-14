@@ -42,7 +42,7 @@
 <!-- Tests -->
 	<target name="test" depends="build">
 	<mkdir dir="${test.report}"/>
-	    <junit printsummary="on" haltonfailure="no">
+	    <junit printsummary="on" haltonfailure="true">
 	    	<classpath>
 	       	 	<fileset dir="${lib.dir}" includes="*.jar"/>
 	        	<pathelement  location="${classes.dir}"/>
